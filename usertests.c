@@ -37,6 +37,23 @@ iputtest(void)
   }
   printf(stdout, "iput test ok\n");
 }
+#include "fcntl.h"
+
+void
+umain(int argc, char *argv[])
+{
+  int pid;
+
+  pid = fork();
+  if(pid == 0) {
+    exec("test", argv);
+    printf(1, "exec test failed\n");
+    exit();
+  }
+  else {
+    wait();
+  }
+}
 
 // does exit() call iput(p->cwd) in a transaction?
 void
