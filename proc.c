@@ -6,6 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
+#include "param.h"
 
 struct {
   struct spinlock lock;
@@ -181,7 +182,7 @@ growproc(int n)
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
 int
-fork(void)
+fork(int tickets)
 {
   int i, pid;
   struct proc *np;
@@ -200,7 +201,9 @@ fork(void)
     return -1;
   }
   np->sz = curproc->sz;
-  np->tickets = 10;
+  np->tickets = tickets;
+  np->stride= max_int/tickets;
+  np->valorPos=np->stride;
   np->parent = curproc;
   *np->tf = *curproc->tf;
 

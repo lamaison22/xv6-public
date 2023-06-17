@@ -13,4 +13,5 @@
 #define FSSIZE       1000  // size of file system in blocks
 #define INT_MAX 300
 #define STRIDE_CONSTANT 20
+#define max_int 10000
 
