@@ -1,0 +1,24 @@
+João Lamaison & João Marcos
+Para esse trabalho devemos considerar três novas caracteristicas de um processo
+1- Passo
+2- Passada
+3 -Tickets
+
+Portanto foi mudado o scheduler para acomodar e realizar as verificações destas mudanças
+no Scheduler eu encontro o processo com menor passada e então passo ele pra frente. Caso a passada estoure o valor maximo os processos devem ser resetados ou nivelados
+
+No fork setamos a passada como max_int/tickets para cada processo
+e o valorPos como passada no primeiro ciclo
+
+Entao chamamos o teste que consiste em gerar programas passando o numero de tickets, quem tiver mais tickets é pra terminar primeiro
+pela logica adotada nesse trabalho, então criamos os processos, os fazemos gastar tempo e retornamos um print quando acabam
+o resultado esperado é 
+
+processo 400
+processo 200
+processo 100
+processo 50
+processo 25
+
+para execução do teste apenas digite test ou test1 no QEMU
+

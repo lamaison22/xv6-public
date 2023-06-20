@@ -340,7 +340,7 @@ scheduler(void)
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
 
-    // Encontra o processo com maior passada
+    // Encontra o processo com menor passada
     struct proc *min_p = 0;
     int min_stride = max_int;
 
@@ -354,14 +354,14 @@ scheduler(void)
         min_p = p;
       }
     }
-    //Verificar para não estourar o valor do int, caso chegue no valor maximo então é resetado
+    //Verificar para não estourar o valor, caso chegue no valor maximo então é resetado
     if(min_stride ==max_int){
         for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) { if (p->state == RUNNABLE) { p->valorPos = p->stride; } }
 
     }
 
     if (min_p != 0) {
-      // Switch to the process with the highest stride value.
+      // troca pro processo de menor passada
       c->proc = min_p;
       switchuvm(min_p);
       min_p->state = RUNNING;
